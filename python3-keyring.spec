@@ -27,6 +27,7 @@ BuildRequires:	python3-secretstorage
 %if %{with doc}
 BuildRequires:	python3-Sphinx
 BuildRequires:	python3-jaraco.packaging >= 3.2
+BuildRequires:	python3-jaraco.tidelift
 BuildRequires:	python3-rst.linker >= 1.9
 %endif
 BuildRequires:	rpm-pythonprov
