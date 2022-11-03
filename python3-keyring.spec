@@ -93,5 +93,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with doc}
 %files apidocs
 %defattr(644,root,root,755)
-%doc build-2/sphinx/html/{_static,*.html,*.js}
+%doc build-3/sphinx/html/{_static,*.html,*.js}
 %endif
