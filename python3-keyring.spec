@@ -68,7 +68,7 @@ Dokumentacja API biblioteki Pythona keyring.
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 PYTEST_PLUGINS="pytest_flake8" \
 PYTHONPATH=$(pwd)/build-3/lib \
-%{__python3} -m pytest tests keyring/tests
+%{__python3} -m pytest tests
 %endif
 
 %install
