@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	doc	# Sphinx documentation
-%bcond_without	tests	# py.test tests
+%bcond_with	tests	# py.test tests
 
 %define 	module	keyring
 Summary:	Python 3 library to access the system keyring service
