@@ -7,32 +7,47 @@
 Summary:	Python 3 library to access the system keyring service
 Summary(pl.UTF-8):	Biblioteka Pythona 3 do dostępu do systemowego pęku kluczy
 Name:		python3-%{module}
-Version:	23.5.0
+Version:	24.2.0
 Release:	1
 License:	MIT, PSF
 Group:		Libraries/Python
 #Source0Download: https://pypi.python.org/simple/keyring
 Source0:	https://files.pythonhosted.org/packages/source/k/keyring/%{module}-%{version}.tar.gz
-# Source0-md5:	4cdb787d6b2f4549b8ad63ec46674ea3
+# Source0-md5:	ed5df85d33c36bb268a79d4472a13312
 URL:		https://pypi.python.org/pypi/keyring
-BuildRequires:	python3-devel >= 1:3.7
+BuildRequires:	python3-devel >= 1:3.8
 BuildRequires:	python3-setuptools
 BuildRequires:	python3-setuptools_scm >= 1.15.0
 %if %{with tests}
-BuildRequires:	python3-entrypoints
-BuildRequires:	python3-pytest >= 2.8
+#BuildRequires:	python3-black >= 0.3.7
+#BuildRequires:	python3-checkdocs >= 2.4
+#BuildRequires:	python3-cov
+%if "%{py3_ver}" != "3.12"
+BuildRequires:	python3-importlib_metadata >= 4.11.4
+%endif
+%if "%{py3_ver}" == "3.8"
+BuildRequires:	python3-importlib_resources
+%endif
+BuildRequires:	python3-jaraco.classes
+BuildRequires:	python3-jeepney >= 0.4.2
+#BuildRequires:	python3-mypy >= 0.9.1
+BuildRequires:	python3-pytest >= 6
+#BuildRequires:	python3-pytest-enabler >= 1.3
 BuildRequires:	python3-pytest-flake8
-BuildRequires:	python3-secretstorage
+#BuildRequires:	python3-ruff
+BuildRequires:	python3-secretstorage >= 3.2
 %endif
 %if %{with doc}
-BuildRequires:	python3-Sphinx
-BuildRequires:	python3-jaraco.packaging >= 3.2
-BuildRequires:	python3-jaraco.tidelift
+BuildRequires:	python3-Sphinx >= 3.5
+BuildRequires:	python3-furo
+BuildRequires:	python3-jaraco.packaging >= 9
+BuildRequires:	python3-jaraco.tidelift >= 1.4
 BuildRequires:	python3-rst.linker >= 1.9
+#BuildRequires:	python3-sphinx-lint
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python3-modules >= 1:3.7
+Requires:	python3-modules >= 1:3.8
 # kwalletd5 through dbus
 Suggests:	python3-dbus
 BuildArch:	noarch
@@ -62,6 +77,11 @@ Dokumentacja API biblioteki Pythona keyring.
 %prep
 %setup -q -n %{module}-%{version}
 
+cat >setup.py <<EOF
+from setuptools import setup
+setup()
+EOF
+
 %build
 %py3_build %{?with_doc:build_sphinx}
 
@@ -85,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc CHANGES.rst README.rst
+%doc LICENSE NEWS.rst README.rst
 %attr(755,root,root) %{_bindir}/keyring-py3
 %{py3_sitescriptdir}/keyring
 %{py3_sitescriptdir}/keyring-%{version}-py*.egg-info
