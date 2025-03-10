@@ -8,7 +8,7 @@ Summary:	Python 3 library to access the system keyring service
 Summary(pl.UTF-8):	Biblioteka Pythona 3 do dostępu do systemowego pęku kluczy
 Name:		python3-%{module}
 Version:	24.2.0
-Release:	1
+Release:	2
 License:	MIT, PSF
 Group:		Libraries/Python
 #Source0Download: https://pypi.python.org/simple/keyring
