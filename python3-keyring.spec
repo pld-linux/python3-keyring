@@ -1,9 +1,9 @@
 #
 # Conditional build:
-%bcond_without	doc	# Sphinx documentation
+%bcond_with	doc	# Sphinx documentation
 %bcond_with	tests	# py.test tests
 
-%define 	module	keyring
+%define		module	keyring
 Summary:	Python 3 library to access the system keyring service
 Summary(pl.UTF-8):	Biblioteka Pythona 3 do dostępu do systemowego pęku kluczy
 Name:		python3-%{module}
